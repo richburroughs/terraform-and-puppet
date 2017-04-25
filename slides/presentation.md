@@ -1,3 +1,5 @@
+footer: Rich Burroughs, SRE at Puppet - @richburroughs
+
 # Terraform and Puppet
 
 ## Rich Burroughs
@@ -18,6 +20,10 @@
 ---
 
 ![inline](terraform_book_cover.jpg)
+
+---
+
+## Terraform is like Puppet for provisioning
 
 ---
 
