@@ -47,6 +47,8 @@ footer: Rich Burroughs, SRE at Puppet - @richburroughs
 
 ## Terraform has a resource graph
 
+^ implicit and explicit dependencies
+
 ---
 
 ## Terraform does not have a RAL
