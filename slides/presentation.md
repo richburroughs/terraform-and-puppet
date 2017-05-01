@@ -1,5 +1,6 @@
 footer: @richburroughs - Portland Puppet User's Group
 
+
 # Terraform and Puppet
 
 ## Rich Burroughs
@@ -14,7 +15,6 @@ footer: @richburroughs - Portland Puppet User's Group
 ## About me
 
 ^ Not a Terraform expert, haven't used it in production
-^ Not doing a deep dive
 
 ---
 
@@ -59,16 +59,13 @@ footer: @richburroughs - Portland Puppet User's Group
 
 ---
 
-``` Bash
-alias tf='terraform'
-```
+## Installing
 
 ---
 
-## State
-
-^ local JSON file by default
-^ can use Consul or other backends to share state
+``` Bash
+alias tf='terraform'
+```
 
 ---
 
@@ -96,7 +93,19 @@ provider "openstack" {
 
 ---
 
-## Environment variables, credentials file, tfvars
+## Connection data
+
+---
+
+- Environment variables
+- variables.tf
+- AWS credentials file
+
+---
+
+```Bash
+source ~/.openrc.sh
+```
 
 ---
 
@@ -146,6 +155,27 @@ variable "network_name" {
 
 ---
 
+## Dependencies
+
+---
+
+```Ruby
+resource "openstack_compute_floatingip_v2" "fip_1" {
+  pool = "${var.fip_pool}"
+}
+
+resource "openstack_compute_floatingip_associate_v2" "fip_assoc_1" {
+  floating_ip = "${openstack_compute_floatingip_v2.fip_1.address}"
+  instance_id = "${openstack_compute_instance_v2.web1.id}"
+}
+```
+
+---
+
+## depends_on
+
+---
+
 ## Provisioners
 
 ---
@@ -156,7 +186,22 @@ variable "network_name" {
 
 ---
 
-## Installing
+## remote-exec could be "puppet apply"
+
+---
+
+## State
+
+---
+
+- Local JSON by default
+- Consul
+- Other backends (Dynamo DB)
+- Atlas (Terraform Enterprise)
+
+---
+
+## Commands
 
 ---
 
@@ -165,4 +210,8 @@ terraform fmt
 terraform show
 terraform plan
 terraform apply
+terraform destroy
 ```
+---
+
+## Demo
