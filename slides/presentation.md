@@ -111,8 +111,58 @@ provider "openstack" {}
 ---
 
 ``` Ruby
-resource "aws_instance" "web" {
-  ami           = "${vars.aws.ubuntu.id}"
-  instance_type = "t2.micro"
+resource "openstack_compute_instance_v2" "web1" {
+  name            = "web1"
+  image_name      = "${var.image}"
+  flavor_name     = "${var.flavor}"
+  key_pair        = "${var.key_pair}"
+  security_groups = "${var.security_groups}"
+
+  network {
+    name = "${var.network_name}"
+  }
 }
+```
+
+---
+
+```Ruby
+variable "image" {
+  default = "centos_7"
+}
+
+variable "flavor" {
+  default = "g1.medium"
+}
+
+variable "key_pair" {
+  default = "my_key"
+}
+
+variable "network_name" {
+  default = "network1"
+}
+```
+
+---
+
+## Provisioners
+
+---
+
+- remote-exec
+- local-exec
+- file
+
+---
+
+## Installing
+
+---
+
+```
+terraform fmt
+terraform show
+terraform plan
+terraform apply
 ```
