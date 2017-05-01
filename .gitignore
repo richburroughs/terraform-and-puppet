@@ -1,0 +1,4 @@
+*.pyc
+terraform/terraform.tfstate*
+terraform/.terraform.tfstate.lock.info
+terraform/installers/
