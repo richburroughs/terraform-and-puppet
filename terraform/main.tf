@@ -9,11 +9,21 @@ resource "openstack_compute_instance_v2" "mom" {
     name = "${var.network_name}"
   }
 
+  provisioner "file" {
+    source      = "installers/puppet-enterprise-${var.pe_version}-el-7-x86_64.tar.gz"
+    destination = "/home/centos/puppet-enterprise-${var.pe_version}-el-7-x86_64.tar.gz"
+
+    connection {
+      user        = "centos"
+      private_key = "${file(var.private_key)}"
+      agent       = false
+      timeout     = "20s"
+    }
+  }
+
   provisioner "remote-exec" {
     inline = [
       "sudo bash -c \"/usr/bin/echo '${self.access_ip_v4} pe-mom.example.com pe-mom' >> /etc/hosts\"",
-      "sudo yum install -y wget",
-      "wget http://packages.example.com/archives/releases/${var.pe_version}/puppet-enterprise-${var.pe_version}-el-7-x86_64.tar.gz",
       "tar xvfz puppet-enterprise-${var.pe_version}-el-7-x86_64.tar.gz",
       "sed 's/\"console_admin_password\": \"\"/\"console_admin_password\": \"${var.console_admin_password}\"/' puppet-enterprise-${var.pe_version}-el-7-x86_64/conf.d/pe.conf > pe.conf.tmp",
       "cp pe.conf.tmp puppet-enterprise-${var.pe_version}-el-7-x86_64/conf.d/pe.conf",

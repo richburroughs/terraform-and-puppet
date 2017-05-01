@@ -1,5 +1,5 @@
 variable "pe_version" {
-  default = "2017.1.0"
+  default = "2017.1.1"
 }
 
 variable "console_admin_password" {
