@@ -25,8 +25,7 @@ resource "openstack_compute_instance_v2" "mom" {
     inline = [
       "sudo bash -c \"/usr/bin/echo '${self.access_ip_v4} pe-mom.example.com pe-mom' >> /etc/hosts\"",
       "tar xvfz puppet-enterprise-${var.pe_version}-el-7-x86_64.tar.gz",
-      "sed 's/\"console_admin_password\": \"\"/\"console_admin_password\": \"${var.console_admin_password}\"/' puppet-enterprise-${var.pe_version}-el-7-x86_64/conf.d/pe.conf > pe.conf.tmp",
-      "cp pe.conf.tmp puppet-enterprise-${var.pe_version}-el-7-x86_64/conf.d/pe.conf",
+      "sed -i 's/\"console_admin_password\": \"\"/\"console_admin_password\": \"${var.console_admin_password}\"/' puppet-enterprise-${var.pe_version}-el-7-x86_64/conf.d/pe.conf",
       "sudo puppet-enterprise-${var.pe_version}-el-7-x86_64/puppet-enterprise-installer -y -c puppet-enterprise-${var.pe_version}-el-7-x86_64/conf.d/pe.conf",
       "sudo bash -c \"/opt/puppetlabs/bin/puppet agent -t || true \"",
       "sudo bash -c \"/usr/bin/echo '*.example.com' >> /etc/puppetlabs/puppet/autosign.conf\"",
