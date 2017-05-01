@@ -1,7 +1,7 @@
 resource "openstack_compute_instance_v2" "mom" {
   name            = "pe-mom"
   image_name      = "${var.image}"
-  flavor_name     = "${var.flavor}"
+  flavor_name     = "${var.mom_flavor}"
   key_pair        = "${var.key_pair}"
   security_groups = "${var.security_groups}"
 
@@ -51,7 +51,7 @@ resource "openstack_compute_floatingip_associate_v2" "fip_assoc_1" {
 }
 
 resource "openstack_compute_instance_v2" "centos-agent" {
-  count           = 2
+  count           = 3
   name            = "centos-agent-${count.index + 1}"
   image_name      = "${var.image}"
   flavor_name     = "${var.flavor}"
@@ -65,7 +65,7 @@ resource "openstack_compute_instance_v2" "centos-agent" {
   provisioner "remote-exec" {
     inline = [
       "sudo bash -c \"/usr/bin/echo '${openstack_compute_instance_v2.mom.access_ip_v4} pe-mom.example.com pe-mom' >> /etc/hosts\"",
-      "sudo bash -c \"/usr/bin/echo '${self.access_ip_v4} pe-compiler-${count.index + 1}.example.com pe-compiler-${count.index + 1}' >> /etc/hosts\"",
+      "sudo bash -c \"/usr/bin/echo '${self.access_ip_v4} centos-agent-${count.index + 1}.example.com centos-agent-${count.index + 1}' >> /etc/hosts\"",
       "sudo bash -c \"curl -k https://pe-mom.example.com:8140/packages/current/install.bash | sudo bash\"",
       "sudo /opt/puppetlabs/bin/puppet agent -t || true "
     ]

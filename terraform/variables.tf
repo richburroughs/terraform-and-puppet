@@ -10,12 +10,12 @@ variable "image" {
   default = "centos_7_updated_20170406"
 }
 
-variable "flavor" {
+variable "mom_flavor" {
   default = "m1.medium"
 }
 
-variable "lb_flavor" {
-  default = "g1.small"
+variable "flavor" {
+  default = "g1.medium"
 }
 
 variable "key_pair" {
