@@ -1,3 +1,5 @@
+provider "openstack" {}
+
 resource "openstack_compute_instance_v2" "mom" {
   name            = "pe-mom"
   image_name      = "${var.image}"
