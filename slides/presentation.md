@@ -1,5 +1,8 @@
 footer: @richburroughs - Portland Puppet User's Group
 
+^ Before starting talk:
+^ Connect to gw host
+^ Source openrc
 
 # Terraform and Puppet
 
@@ -14,7 +17,14 @@ footer: @richburroughs - Portland Puppet User's Group
 
 ## About me
 
-^ Not a Terraform expert, haven't used it in production
+- SRE at Puppet since September
+- Previously a Puppet user for about 4 years
+- Not a Terraform expert
+- Hates bullet points
+
+---
+
+![inline](orly.png)
 
 ---
 
