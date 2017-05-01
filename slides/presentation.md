@@ -1,4 +1,4 @@
-footer: Rich Burroughs, SRE at Puppet - @richburroughs
+footer: @richburroughs - Portland Puppet User's Group
 
 # Terraform and Puppet
 
@@ -23,6 +23,10 @@ footer: Rich Burroughs, SRE at Puppet - @richburroughs
 ---
 
 ![inline](terraformio_site.png)
+
+---
+
+## "de-facto provisioning tool"
 
 ---
 
@@ -70,20 +74,23 @@ alias tf='terraform'
 
 ## Providers
 
-^ AWS
-^ Azure
-^ GCP
-^ OpenStack
-^ GitHub
-^ Pager Duty
+---
+
+- AWS
+- Azure
+- GCP
+- OpenStack
+- GitHub
+- Pager Duty
 
 ---
 
 ``` Ruby
-provider "aws" {
-  access_key = "${var.aws_access_key}"
-  secret_key = "${var.aws_secret_key}"
-  region     = "us-east-1"
+provider "openstack" {
+  user_name   = "admin"
+  tenant_name = "admin"
+  password    = "pwd"
+  auth_url    = "http://myauthurl:5000/v2.0"
 }
 ```
 
@@ -94,7 +101,7 @@ provider "aws" {
 ---
 
 ``` Ruby
-provider "aws" {}
+provider "openstack" {}
 ```
 
 ---
