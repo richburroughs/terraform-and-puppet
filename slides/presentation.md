@@ -10,21 +10,21 @@ footer: @richburroughs - Portland Puppet User's Group
 
 ---
 
-![280%](terraform-vertical-color.png)
-![20%](puppet-logo-tagline-03.png)
-
----
-
 ## About me
 
 - SRE at Puppet since September
 - Previously a Puppet user for about 4 years
 - Not a Terraform expert
-- Hates bullet points
+- I hate bullet points
 
 ---
 
 ![inline](orly.png)
+
+---
+
+![280%](terraform-vertical-color.png)
+![20%](puppet-logo-tagline-03.png)
 
 ---
 
@@ -36,11 +36,15 @@ footer: @richburroughs - Portland Puppet User's Group
 
 ---
 
+![inline](terraform_book_cover.jpg)
+
+---
+
 ## "de-facto provisioning tool"
 
 ---
 
-![inline](terraform_book_cover.jpg)
+## Not a configuration management tool
 
 ---
 
@@ -73,6 +77,11 @@ footer: @richburroughs - Portland Puppet User's Group
 
 ---
 
+![inline](inkblot_tf.jpg)
+
+---
+
+
 ``` Bash
 alias tf='terraform'
 ```
@@ -89,6 +98,7 @@ alias tf='terraform'
 - OpenStack
 - GitHub
 - Pager Duty
+- many more
 
 ---
 
@@ -107,8 +117,8 @@ provider "openstack" {
 
 ---
 
+- tfvars
 - Environment variables
-- variables.tf
 - AWS credentials file
 
 ---
